@@ -1,13 +1,30 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const productRow = document.querySelector(".product-row");
-  const leftArrow = document.querySelector(".arrow-left");
-  const rightArrow = document.querySelector(".arrow-right");
+  const productRows = document.querySelectorAll(".product-row");
 
-  leftArrow.addEventListener("click", () => {
-    productRow.scrollBy({ left: -270, behavior: "smooth" });
-  });
+  productRows.forEach((productRow) => {
+    const leftArrow = productRow.parentElement.querySelector(".arrow-left");
+    const rightArrow = productRow.parentElement.querySelector(".arrow-right");
 
-  rightArrow.addEventListener("click", () => {
-    productRow.scrollBy({ left: 270, behavior: "smooth" });
+    if (leftArrow && rightArrow) {
+      leftArrow.addEventListener("click", () => {
+        productRow.scrollBy({ left: -270, behavior: "smooth" });
+      });
+
+      rightArrow.addEventListener("click", () => {
+        productRow.scrollBy({ left: 270, behavior: "smooth" });
+      });
+    }
   });
+});
+
+//
+
+const navbar = document.getElementById("navbar");
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 50) {
+    navbar.classList.add("scrolled");
+  } else {
+    navbar.classList.remove("scrolled");
+  }
 });
